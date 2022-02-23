@@ -10,7 +10,6 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
 } from './types';
-//import { IAuthFunction, IConfigHeaders } from '../../types/interfaces';
 
 // Check token & load user
 export const loadUser = () => (dispatch, getState) => {
