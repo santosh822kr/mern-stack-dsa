@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { axiosInstance } from '../config';
 import { returnErrors } from './errorActions';
 import {
   USER_LOADED,
@@ -16,7 +16,7 @@ export const loadUser = () => (dispatch, getState) => {
   // User loading
   dispatch({ type: USER_LOADING });
 
-  axios
+  axiosInstance
     .get('/api/auth/user', tokenConfig(getState))
     .then((res) =>
       dispatch({
@@ -46,7 +46,7 @@ export const register =
     // Request body
     const body = JSON.stringify({ name, email, password });
 
-    axios
+    axiosInstance
       .post('/api/users', body, config)
       .then((res) =>
         dispatch({
@@ -78,7 +78,7 @@ export const login =
     // Request body
     const body = JSON.stringify({ email, password });
 
-    axios
+    axiosInstance
       .post('/api/auth', body, config)
       .then((res) =>
         dispatch({

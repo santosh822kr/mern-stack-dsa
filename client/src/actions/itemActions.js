@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axiosInstance from '../config';
 import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEMS_LOADING } from './types';
 import { tokenConfig } from './authActions';
 import { returnErrors } from './errorActions';
@@ -6,7 +6,7 @@ import { returnErrors } from './errorActions';
 export const getItems = () => (dispatch) => {
   dispatch(setItemsLoading());
 
-  axios
+  axiosInstance
     .get('/api/items')
     .then((res) => {
       //console.log('aaaaaa', res.data);
@@ -22,7 +22,7 @@ export const getItems = () => (dispatch) => {
 };
 
 export const addItem = (item) => (dispatch, getState) => {
-  axios
+  axiosInstance
     .post('/api/items', item, tokenConfig(getState))
     .then((res) =>
       dispatch({
@@ -36,7 +36,7 @@ export const addItem = (item) => (dispatch, getState) => {
 };
 
 export const deleteItem = (id) => (dispatch, getState) => {
-  axios
+  axiosInstance
     .delete(`/api/items/${id}`, tokenConfig(getState))
     .then((res) =>
       dispatch({
